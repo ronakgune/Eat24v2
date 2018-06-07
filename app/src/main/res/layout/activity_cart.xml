@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/my_bg"
     android:padding="16dp"
-    tools:context="com.example.ha_hai.androideatit.com.main.eat24.Cart">
+    tools:context="com.main.eat24.Cart">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/listCart"

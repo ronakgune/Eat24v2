@@ -7,7 +7,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
-
+    <string name="zomato_api"><![CDATA[https://developers.zomato.com/api/v2.1/search?lat=-33.92127&lon=18.4180213&count=10]]></string>
 
 
     <string name="SignIn">Sign In</string>

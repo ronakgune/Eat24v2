@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.ha_hai.androideatit.com.main.eat24.FoodList">
+    tools:context="com.main.eat24.FoodList">
 
     <com.mancj.materialsearchbar.MaterialSearchBar
         android:id="@+id/searchBar"

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/my_bg"
-    tools:context="com.example.ha_hai.androideatit.com.main.eat24.OrderStatus">
+    tools:context="com.main.eat24.OrderStatus">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/listOrders"

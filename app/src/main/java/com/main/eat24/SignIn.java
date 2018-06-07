@@ -66,7 +66,7 @@ public class SignIn extends AppCompatActivity {
                     User user = dataSnapshot.child(edtPhone.getText().toString()).getValue(User.class);
                     user.setPhone(edtPhone.getText().toString());
                     if (user.getPassword().equals(edtPassword.getText().toString())) {
-                        Intent homeIntent = new Intent(SignIn.this, Home.class);
+                        Intent homeIntent = new Intent(SignIn.this, home.class);
                         Common.currentUser = user;
                         startActivity(homeIntent);
                         finish();
@@ -75,7 +75,7 @@ public class SignIn extends AppCompatActivity {
                     }
                 } else {
                     mDialog.dismiss();
-                    Toast.makeText(SignIn.this, "User not exits in Database", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignIn.this, "User does exist in Database", Toast.LENGTH_SHORT).show();
                 }
             }
 
