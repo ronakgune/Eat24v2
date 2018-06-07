@@ -50,7 +50,7 @@ public class FoodList extends AppCompatActivity {
 
     FirebaseRecyclerAdapter<Food, FoodViewHolder> adapter;
 
-    //searcg Func
+    //search Func
     FirebaseRecyclerAdapter<Food, FoodViewHolder> searchAdapter;
     List<String> suggestList = new ArrayList<>();
 
