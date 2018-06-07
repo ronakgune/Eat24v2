@@ -22,9 +22,7 @@ import java.util.Locale;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * Created by ha_hai on 4/9/2018.
- */
+
 
 public class CartAdapter extends RecyclerView.Adapter<CartViewHolder>{
 

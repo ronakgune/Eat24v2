@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/my_bg_anim"
-    tools:context="com.main.eat24.ViewHolder.IntroActivity">
+    tools:context="com.main.eat24.IntroActivity">
 
     <android.support.v4.view.ViewPager
         android:id="@+id/view_pager"

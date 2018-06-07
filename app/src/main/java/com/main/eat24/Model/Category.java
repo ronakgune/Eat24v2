@@ -1,9 +1,5 @@
 package com.main.eat24.Model;
 
-/**
- * Created by ha_hai on 4/8/2018.
- */
-
 public class Category {
 
     private String Name;

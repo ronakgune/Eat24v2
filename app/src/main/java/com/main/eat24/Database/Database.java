@@ -11,9 +11,7 @@ import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by ha_hai on 4/9/2018.
- */
+
 
 public class Database extends SQLiteAssetHelper{
 

@@ -1,4 +1,4 @@
-package com.main.eat24.ViewHolder;
+package com.main.eat24;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -6,9 +6,6 @@ import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-import android.widget.TextView;
-
-import com.main.eat24.R;
 //import com.main.eat24.ViewHolder.R;
 
 public class Splash extends AppCompatActivity {

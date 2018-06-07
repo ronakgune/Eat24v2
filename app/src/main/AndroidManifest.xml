@@ -13,14 +13,13 @@
         android:theme="@style/AppTheme">
         <activity android:name="com.main.eat24.MainActivity"/>
 
-        <activity android:name="com$main$eat24$ViewHolder.Splash">
+        <activity android:name="com.main.eat24.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com$main$eat24$ViewHolder.IntroActivity">
-
+        <activity android:name="com.main.eat24.IntroActivity">
         </activity>
         <activity android:name="com.main.eat24.SignIn" />
         <activity android:name="com.main.eat24.SignUp" />

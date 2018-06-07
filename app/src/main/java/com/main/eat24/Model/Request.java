@@ -2,9 +2,7 @@ package com.main.eat24.Model;
 
 import java.util.List;
 
-/**
- * Created by ha_hai on 4/9/2018.
- */
+
 
 public class Request {
     private String phone;

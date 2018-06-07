@@ -1,8 +1,6 @@
 package com.main.eat24.Model;
 
-/**
- * Created by ha_hai on 4/9/2018.
- */
+
 
 public class Order {
 

@@ -11,9 +11,6 @@ import com.main.eat24.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * Created by ha_hai on 4/9/2018.
- */
 
 public class OrderViewHolder extends RecyclerView.ViewHolder implements OnClickListener {
 

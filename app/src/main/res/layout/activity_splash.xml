@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFF"
-    tools:context="com.main.eat24.ViewHolder.Splash">
+    tools:context="com.main.eat24.Splash">
 
 
     <ImageView

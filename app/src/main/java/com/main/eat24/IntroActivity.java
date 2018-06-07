@@ -1,4 +1,4 @@
-package com.main.eat24.ViewHolder;
+package com.main.eat24;
 
 import android.app.Activity;
 import android.content.Context;
@@ -7,8 +7,6 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.AnimationDrawable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import com.main.eat24.R;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -17,13 +15,10 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import com.main.eat24.MainActivity;
 
 
 public class IntroActivity extends Activity {
