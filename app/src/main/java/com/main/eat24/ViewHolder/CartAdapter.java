@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.main.eat24.Model.Order;
-import com.example.ha_hai.androideatit.R;
+import com.main.eat24.R;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;

@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 
 import com.main.eat24.Common.Common;
 import com.main.eat24.Model.Request;
-import com.example.ha_hai.androideatit.R;
+import com.main.eat24.R;
 import com.main.eat24.ViewHolder.OrderViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;

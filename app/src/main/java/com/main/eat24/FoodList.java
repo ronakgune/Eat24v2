@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 
 import com.main.eat24.Interface.ItemClickListener;
 import com.main.eat24.Model.Food;
-import com.example.ha_hai.androideatit.R;
+import com.main.eat24.R;
 import com.main.eat24.ViewHolder.FoodViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;

@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.ha_hai.androideatit.R;
+import com.main.eat24.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

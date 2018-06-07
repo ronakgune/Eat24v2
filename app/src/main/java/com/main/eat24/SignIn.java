@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import com.main.eat24.Common.Common;
 import com.main.eat24.Model.User;
-import com.example.ha_hai.androideatit.R;
+import com.main.eat24.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

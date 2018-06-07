@@ -12,7 +12,7 @@ import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.main.eat24.Database.Database;
 import com.main.eat24.Model.Food;
 import com.main.eat24.Model.Order;
-import com.example.ha_hai.androideatit.R;
+import com.main.eat24.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

@@ -23,7 +23,7 @@ import android.widget.TextView;
 import com.main.eat24.Common.Common;
 import com.main.eat24.Interface.ItemClickListener;
 import com.main.eat24.Model.Category;
-import com.example.ha_hai.androideatit.R;
+import com.main.eat24.R;
 import com.main.eat24.ViewHolder.MenuViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;

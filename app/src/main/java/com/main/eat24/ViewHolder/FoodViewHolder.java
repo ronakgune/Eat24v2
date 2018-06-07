@@ -6,7 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.main.eat24.Interface.ItemClickListener;
-import com.example.ha_hai.androideatit.R;
+import com.main.eat24.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
