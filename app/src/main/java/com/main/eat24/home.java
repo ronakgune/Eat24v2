@@ -227,23 +227,23 @@ public class home extends AppCompatActivity implements SwipeRefreshLayout.OnRefr
 
                     jRestaurant = jRestaurant.getJSONObject("restaurant");
 
-                    //JSONObject jLocattion = jRestaurant.getJSONObject("location");
+                    JSONObject jLocattion = jRestaurant.getJSONObject("location");
                     JSONObject jRating = jRestaurant.getJSONObject("user_rating");
 
                     id = jRestaurant.getString("id");
                     name = jRestaurant.getString("name");
-                    //address = jLocattion.getString("address");
+                    address = jLocattion.getString("address");
                     //lat = jLocattion.getLong("latitude");
                     //lon = jLocattion.getLong("longitude");
                     currency = jRestaurant.getString("currency");
                     cost = jRestaurant.getInt("average_cost_for_two");
-                    imageUrl = jRestaurant.getString("thumb");
+                    imageUrl = jRestaurant.getString("featured_image");
                     rating = (float) jRating.getDouble("aggregate_rating");
 
 
                     Restaurant restaurant = new Restaurant();
                     restaurant.setName(name);
-                    //restaurant.setAddress(address);
+                    restaurant.setAddress(address);
                     //restaurant.setLatitiude(lat);
                     //restaurant.setLongitude(lon);
                     restaurant.setCurrency(currency);
