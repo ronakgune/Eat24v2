@@ -18,7 +18,7 @@
             android:layout_width="@dimen/img_width"
             android:layout_height="@dimen/img_height"
             android:gravity="center_horizontal"
-            android:src="@drawable/location" />
+            android:src="@drawable/location_home" />
 
 
         <TextView

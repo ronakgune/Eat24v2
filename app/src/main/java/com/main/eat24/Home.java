@@ -1,12 +1,17 @@
 package com.main.eat24;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.main.eat24.adapters.RestaurantAdapter;
 import com.main.eat24.Model.Restaurant;
@@ -24,6 +29,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
+import static com.main.eat24.location.latitude;
+import static com.main.eat24.location.longitude;
+
 /**
  * So this tutorial will go in order of
  * 1: setting up gradle dependencies
@@ -35,6 +43,31 @@ import java.util.ArrayList;
  */
 public class home extends AppCompatActivity {
 
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.search:
+                    // Call search
+                    Toast.makeText(home.this, "Search", Toast.LENGTH_SHORT).show();
+                    return true;
+                case R.id.orders:
+                    Toast.makeText(home.this, "Orders", Toast.LENGTH_SHORT).show();
+                    return true;
+                case R.id.location_home:
+                    Intent location = new Intent(home.this, location.class);
+                    startActivity(location);
+                    return true;
+                case R.id.cart:
+                    Intent cart = new Intent(home.this, Cart.class);
+                    startActivity(cart);
+                    return true;
+            }
+            return false;
+        }
+    };
     private RecyclerView mRestaurantRecyclerView;
     private RestaurantAdapter mAdapter;
     private ArrayList<Restaurant> mRestaurantCollection;
@@ -43,7 +76,8 @@ public class home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_main);
-
+        BottomNavigationView navigation = findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         init();
         new FetchDataTask().execute();
     }
@@ -58,16 +92,16 @@ public class home extends AppCompatActivity {
     }
 
     public class FetchDataTask extends AsyncTask<Void, Void, Void> {
-        private String mZomatoString;
-
+        String mZomatoString;
         @Override
         protected Void doInBackground(Void... params) {
             HttpURLConnection urlConnection = null;
             BufferedReader reader = null;
-            Uri builtUri = Uri.parse(getString(R.string.zomato_api));
+            String requestURL = String.format("https://developers.zomato.com/api/v2.1/search?lat=%s&lon=%s&count=20",longitude,latitude);
+            //Uri builtUri = Uri.parse(getString(R.string.zomato_api));
             URL url;
             try {
-                url = new URL(builtUri.toString());
+                url = new URL(requestURL);
                 urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestMethod("GET");
                 urlConnection.setRequestProperty("user-key", "a9f2b3a292aae939ea358f43062c1f8b");
@@ -94,7 +128,7 @@ public class home extends AppCompatActivity {
                 mZomatoString = buffer.toString();
                 JSONObject jsonObject = new JSONObject(mZomatoString);
 
-                Log.v("Response", jsonObject.toString());
+                //Log.v("Response", jsonObject.toString());
 
                 JSONArray restaurantsArray = jsonObject.getJSONArray("restaurants");
 
@@ -114,14 +148,14 @@ public class home extends AppCompatActivity {
 
                     JSONObject jRestaurant = (JSONObject) restaurantsArray.get(i);
                     jRestaurant = jRestaurant.getJSONObject("restaurant");
-                    JSONObject jLocattion = jRestaurant.getJSONObject("location");
+                    //JSONObject jLocattion = jRestaurant.getJSONObject("location");
                     JSONObject jRating = jRestaurant.getJSONObject("user_rating");
 
 
                     name = jRestaurant.getString("name");
-                    address = jLocattion.getString("address");
-                    lat = jLocattion.getLong("latitude");
-                    lon = jLocattion.getLong("longitude");
+                    //address = jLocattion.getString("address");
+                    //lat = jLocattion.getLong("latitude");
+                    //lon = jLocattion.getLong("longitude");
                     currency = jRestaurant.getString("currency");
                     cost = jRestaurant.getInt("average_cost_for_two");
                     imageUrl = jRestaurant.getString("thumb");
@@ -130,9 +164,9 @@ public class home extends AppCompatActivity {
 
                     Restaurant restaurant = new Restaurant();
                     restaurant.setName(name);
-                    restaurant.setAddress(address);
-                    restaurant.setLatitiude(lat);
-                    restaurant.setLongitude(lon);
+                    //restaurant.setAddress(address);
+                    //restaurant.setLatitiude(lat);
+                    //restaurant.setLongitude(lon);
                     restaurant.setCurrency(currency);
                     restaurant.setCost(String.valueOf(cost));
                     restaurant.setImageUrl(imageUrl);
