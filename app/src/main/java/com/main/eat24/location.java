@@ -10,13 +10,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.main.eat24.Common.Common;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class location extends AppCompatActivity {
-    static String latitude;
-    static  String longitude;
     Button btnShowCoord;
     EditText edtAddress;
     TextView txtCoord;
@@ -72,11 +72,11 @@ public class location extends AppCompatActivity {
             try{
                 JSONObject jsonObject = new JSONObject(s);
 
-                latitude = ((JSONArray)jsonObject.get("results")).getJSONObject(0).getJSONObject("geometry")
+                Common.latitude = ((JSONArray)jsonObject.get("results")).getJSONObject(0).getJSONObject("geometry")
                         .getJSONObject("location").get("lat").toString();
-                longitude = ((JSONArray)jsonObject.get("results")).getJSONObject(0).getJSONObject("geometry")
+                Common.longitude = ((JSONArray)jsonObject.get("results")).getJSONObject(0).getJSONObject("geometry")
                         .getJSONObject("location").get("lng").toString();
-                txtCoord.setText(String.format("Coordinates : %s / %s ",latitude,longitude));
+                txtCoord.setText(String.format("Coordinates : %s / %s ",Common.latitude,Common.longitude));
 
                 if(dialog.isShowing())
                     dialog.dismiss();

@@ -22,6 +22,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.main.eat24.Common.Common.currentUserPhone;
+
 public class SignIn extends AppCompatActivity {
 
     @BindView(R.id.edtPhone)
@@ -52,7 +54,7 @@ public class SignIn extends AppCompatActivity {
     public void onButtonSignInClick(View view) {
 
         final ProgressDialog mDialog = new ProgressDialog(this);
-        mDialog.setMessage("Please waiting...");
+        mDialog.setMessage("Please wait ...");
         mDialog.show();
 
         table_use.addValueEventListener(new ValueEventListener() {
@@ -68,6 +70,7 @@ public class SignIn extends AppCompatActivity {
                     if (user.getPassword().equals(edtPassword.getText().toString())) {
                         Intent homeIntent = new Intent(SignIn.this, home.class);
                         Common.currentUser = user;
+
                         startActivity(homeIntent);
                         finish();
                     } else {

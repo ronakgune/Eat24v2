@@ -1,11 +1,16 @@
 package com.main.eat24;
 
+import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,6 +18,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.main.eat24.Common.Common;
 import com.main.eat24.adapters.RestaurantAdapter;
 import com.main.eat24.Model.Restaurant;
 
@@ -29,8 +35,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-import static com.main.eat24.location.latitude;
-import static com.main.eat24.location.longitude;
 
 /**
  * So this tutorial will go in order of
@@ -41,7 +45,7 @@ import static com.main.eat24.location.longitude;
  * 5: Creating RecyclerView in layout file in MainActivity
  * 6: Pulling Json data and setting up recyclerview
  */
-public class home extends AppCompatActivity {
+public class home extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener, LocationListener {
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -68,36 +72,96 @@ public class home extends AppCompatActivity {
             return false;
         }
     };
+
+    static int count = 0;
+    LocationManager locationManager;
+    public SwipeRefreshLayout mSwipeRefreshLayout;
     private RecyclerView mRestaurantRecyclerView;
     private RestaurantAdapter mAdapter;
     private ArrayList<Restaurant> mRestaurantCollection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getLocation();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_main);
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+
+
         init();
         new FetchDataTask().execute();
+
+        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefresh);
+        mSwipeRefreshLayout.setOnRefreshListener(this);
+        Toast.makeText(this, "Current location is" + Common.longitude + Common.latitude, Toast.LENGTH_SHORT).show();
     }
 
+
+    void getLocation() {
+        try {
+            locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 5, (LocationListener) this);
+        }
+        catch(SecurityException e) {
+            e.printStackTrace();
+        }
+
+    }
     private void init() {
+        if(count == 0){
+        Common.longitude = "-121.938987";
+        Common.latitude = "37.349642";
+        count++;
+    }
+
         mRestaurantRecyclerView = (RecyclerView) findViewById(R.id.restaurant_recycler);
         mRestaurantRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRestaurantRecyclerView.setHasFixedSize(true);
         mRestaurantCollection = new ArrayList<>();
+
         mAdapter = new RestaurantAdapter(mRestaurantCollection, this);
         mRestaurantRecyclerView.setAdapter(mAdapter);
+
     }
 
-    public class FetchDataTask extends AsyncTask<Void, Void, Void> {
+
+    @Override
+    public void onRefresh() {
+        init();
+        new FetchDataTask().execute();
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        Common.latitude =  String.valueOf(location.getLatitude());
+        Common.longitude = String.valueOf(location.getLongitude());
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+        Toast.makeText(home.this, "Please Enable GPS and Internet", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+
+    }
+
+    public class FetchDataTask extends AsyncTask<Void, Void, Void>  {
+
         String mZomatoString;
         @Override
         protected Void doInBackground(Void... params) {
             HttpURLConnection urlConnection = null;
             BufferedReader reader = null;
-            String requestURL = String.format("https://developers.zomato.com/api/v2.1/search?lat=%s&lon=%s&count=20",longitude,latitude);
+            String requestURL = String.format("https://developers.zomato.com/api/v2.1/search?lat=%s&lon=%s&count=20", Common.latitude,Common.longitude);
             //Uri builtUri = Uri.parse(getString(R.string.zomato_api));
             URL url;
             try {
@@ -197,6 +261,9 @@ public class home extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Void aVoid) {
+            if(mSwipeRefreshLayout.isRefreshing()){
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
             mAdapter.notifyDataSetChanged();
         }
     }
