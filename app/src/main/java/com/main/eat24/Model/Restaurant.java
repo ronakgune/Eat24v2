@@ -2,6 +2,7 @@ package com.main.eat24.Model;
 
 
 public class Restaurant {
+    private String id;
     private String name;
     private String address;
     private String rating;
@@ -15,18 +16,29 @@ public class Restaurant {
     public Restaurant() {
     }
 
-    public Restaurant(String name, String address, String rating, String cost, String imageUrl, String currency, double longitude, double latitiude) {
 
+
+    public Restaurant(String id, String name, String address, String rating, String cost, String imageUrl, String currency, double longitude, double latitiude) {
+
+        this.id = id;
         this.name = name;
         this.address = address;
         this.rating = rating;
         this.cost = cost;
         this.imageUrl = imageUrl;
         this.currency = currency;
+
         this.longitude = longitude;
         this.latitiude = latitiude;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
+    }
     public String getName() {
 
         return name;

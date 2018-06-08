@@ -9,4 +9,5 @@ public class Common {
     public static String currentUserPhone;
     public static String longitude;
     public static String latitude;
+    public static int count;
 }

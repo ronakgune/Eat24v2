@@ -46,7 +46,7 @@ import java.util.ArrayList;
  * 6: Pulling Json data and setting up recyclerview
  */
 public class home extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener, LocationListener {
-
+    int innerCount = 0;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -73,7 +73,7 @@ public class home extends AppCompatActivity implements SwipeRefreshLayout.OnRefr
         }
     };
 
-    static int count = 0;
+
     LocationManager locationManager;
     public SwipeRefreshLayout mSwipeRefreshLayout;
     private RecyclerView mRestaurantRecyclerView;
@@ -82,20 +82,23 @@ public class home extends AppCompatActivity implements SwipeRefreshLayout.OnRefr
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+//        if(innerCount == 0){
+//            Common.count = 0;
+//            innerCount++;
+//        }else{
+//            Common.count = 1;
+//        }
         getLocation();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_main);
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
-
-
         init();
         new FetchDataTask().execute();
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefresh);
         mSwipeRefreshLayout.setOnRefreshListener(this);
-        Toast.makeText(this, "Current location is" + Common.longitude + Common.latitude, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Current location is" + Common.longitude + Common.latitude + Common.count, Toast.LENGTH_SHORT).show();
     }
 
 
@@ -110,10 +113,10 @@ public class home extends AppCompatActivity implements SwipeRefreshLayout.OnRefr
 
     }
     private void init() {
-        if(count == 0){
+        if(Common.count == 0){
         Common.longitude = "-121.938987";
         Common.latitude = "37.349642";
-        count++;
+        Common.count++;
     }
 
         mRestaurantRecyclerView = (RecyclerView) findViewById(R.id.restaurant_recycler);
@@ -127,8 +130,10 @@ public class home extends AppCompatActivity implements SwipeRefreshLayout.OnRefr
     }
 
 
+    // Called after Swipe to refresh
     @Override
     public void onRefresh() {
+        Common.count = 10;
         init();
         new FetchDataTask().execute();
     }
@@ -153,6 +158,12 @@ public class home extends AppCompatActivity implements SwipeRefreshLayout.OnRefr
     public void onProviderDisabled(String provider) {
 
     }
+
+
+
+
+
+    // Fetch Data Using Recycler
 
     public class FetchDataTask extends AsyncTask<Void, Void, Void>  {
 
@@ -199,7 +210,8 @@ public class home extends AppCompatActivity implements SwipeRefreshLayout.OnRefr
                 //list = new ArrayList<>();
                 for (int i = 0; i < restaurantsArray.length(); i++) {
 
-                    Log.v("BRAD_", i + "");
+                    //Log.v("BRAD_", i + "");
+                    String id;
                     String name;
                     String address;
                     String currency;
@@ -210,12 +222,15 @@ public class home extends AppCompatActivity implements SwipeRefreshLayout.OnRefr
                     float rating;
 
 
+
                     JSONObject jRestaurant = (JSONObject) restaurantsArray.get(i);
+
                     jRestaurant = jRestaurant.getJSONObject("restaurant");
+
                     //JSONObject jLocattion = jRestaurant.getJSONObject("location");
                     JSONObject jRating = jRestaurant.getJSONObject("user_rating");
 
-
+                    id = jRestaurant.getString("id");
                     name = jRestaurant.getString("name");
                     //address = jLocattion.getString("address");
                     //lat = jLocattion.getLong("latitude");

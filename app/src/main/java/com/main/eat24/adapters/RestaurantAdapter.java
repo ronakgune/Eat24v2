@@ -40,7 +40,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
 
         holder.setName(restaurant.getName());
         holder.setAddress(restaurant.getAddress());
-        holder.setCost("Average cost for 2: " + restaurant.getCurrency() + restaurant.getCost());
+        holder.setCost("Average cost for 2 " +  " " + restaurant.getCurrency()+  " " + restaurant.getCost() +  " ");
         holder.setRating(restaurant.getRating());
 
         Glide.with(mACtivity)

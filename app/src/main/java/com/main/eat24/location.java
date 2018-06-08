@@ -1,6 +1,7 @@
 package com.main.eat24;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -37,6 +38,14 @@ public class location extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Common.count = 10;
+        Intent home = new Intent(this, home.class);
+        startActivity(home);
+        super.onBackPressed();
     }
 
     private class GetCoordinates extends AsyncTask<String,Void,String> {
