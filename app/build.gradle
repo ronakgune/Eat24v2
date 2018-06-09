@@ -46,6 +46,7 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
     implementation 'com.android.support:design:27.1.1'
     compile 'com.paypal.sdk:paypal-android-sdk:2.16.0'
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }
 
 

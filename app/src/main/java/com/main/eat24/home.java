@@ -98,14 +98,14 @@ public class home extends AppCompatActivity implements SwipeRefreshLayout.OnRefr
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefresh);
         mSwipeRefreshLayout.setOnRefreshListener(this);
-        Toast.makeText(this, "Current location is" + Common.longitude + Common.latitude + Common.count, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Current location is" + Common.longitude + Common.latitude + Common.count, Toast.LENGTH_SHORT).show();
     }
 
 
     void getLocation() {
         try {
-            locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 5, (LocationListener) this);
+//            locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+//            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 5, (LocationListener) this);
         }
         catch(SecurityException e) {
             e.printStackTrace();
@@ -172,14 +172,14 @@ public class home extends AppCompatActivity implements SwipeRefreshLayout.OnRefr
         protected Void doInBackground(Void... params) {
             HttpURLConnection urlConnection = null;
             BufferedReader reader = null;
-            String requestURL = String.format("https://developers.zomato.com/api/v2.1/search?lat=%s&lon=%s&count=20", Common.latitude,Common.longitude);
+            String requestURL = String.format("https://api.eatstreet.com/publicapi/v1/restaurant/search?latitude=%s&longitude=%s&method=delivery&access-token=a260495775120148", Common.latitude,Common.longitude);
             //Uri builtUri = Uri.parse(getString(R.string.zomato_api));
             URL url;
             try {
                 url = new URL(requestURL);
                 urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestMethod("GET");
-                urlConnection.setRequestProperty("user-key", "a9f2b3a292aae939ea358f43062c1f8b");
+                //urlConnection.setRequestProperty("user-key", "a9f2b3a292aae939ea358f43062c1f8b");
                 urlConnection.connect();
 
                 InputStream inputStream = urlConnection.getInputStream();
@@ -202,7 +202,7 @@ public class home extends AppCompatActivity implements SwipeRefreshLayout.OnRefr
 
                 mZomatoString = buffer.toString();
                 JSONObject jsonObject = new JSONObject(mZomatoString);
-
+                //Toast.makeText(home.this, mZomatoString, Toast.LENGTH_LONG).show();
                 //Log.v("Response", jsonObject.toString());
 
                 JSONArray restaurantsArray = jsonObject.getJSONArray("restaurants");
@@ -210,48 +210,68 @@ public class home extends AppCompatActivity implements SwipeRefreshLayout.OnRefr
                 //list = new ArrayList<>();
                 for (int i = 0; i < restaurantsArray.length(); i++) {
 
-                    //Log.v("BRAD_", i + "");
-                    String id;
-                    String name;
-                    String address;
-                    String currency;
-                    String imageUrl;
-                    long lon;
-                    long lat;
-                    long cost;
-                    float rating;
 
-
-
-                    JSONObject jRestaurant = (JSONObject) restaurantsArray.get(i);
-
-                    jRestaurant = jRestaurant.getJSONObject("restaurant");
-
-                    //JSONObject jLocattion = jRestaurant.getJSONObject("location");
-                    JSONObject jRating = jRestaurant.getJSONObject("user_rating");
-
-                    id = jRestaurant.getString("id");
-                    name = jRestaurant.getString("name");
-                    //address = jLocattion.getString("address");
-                    //lat = jLocattion.getLong("latitude");
-                    //lon = jLocattion.getLong("longitude");
-                    currency = jRestaurant.getString("currency");
-                    cost = jRestaurant.getInt("average_cost_for_two");
-                    imageUrl = jRestaurant.getString("thumb");
-                    rating = (float) jRating.getDouble("aggregate_rating");
-
+                    JSONObject jRestaurant = restaurantsArray.getJSONObject(i);
+                    String name = jRestaurant.getString("name");
+                    String address = jRestaurant.getString("streetAddress");
+                    String waitTime = jRestaurant.getString("minWaitTime");
+                    String cost = jRestaurant.getString("deliveryPrice");
+                    String id = jRestaurant.getString("apiKey");
 
                     Restaurant restaurant = new Restaurant();
                     restaurant.setName(name);
-                    //restaurant.setAddress(address);
+                    restaurant.setAddress(address);
+                    restaurant.setId(id);
                     //restaurant.setLatitiude(lat);
                     //restaurant.setLongitude(lon);
-                    restaurant.setCurrency(currency);
+//                    restaurant.setCurrency(currency);
                     restaurant.setCost(String.valueOf(cost));
-                    restaurant.setImageUrl(imageUrl);
-                    restaurant.setRating(String.valueOf(rating));
+//                    restaurant.setImageUrl(imageUrl);
+                    restaurant.setRating(String.valueOf(waitTime));
 
                     mRestaurantCollection.add(restaurant);
+
+//                    //Log.v("BRAD_", i + "");
+//                    String id;
+//                    String name;
+//                    String address;
+//                    String currency;
+//                    String imageUrl;
+//                    long lon;
+//                    long lat;
+//                    long cost;
+//                    float rating;
+//
+//
+//
+//                    JSONObject jRestaurant = restaurantsArray.getJSONObject(i);
+//
+//                    //jRestaurant = jRestaurant.getJSONObject("restaurant");
+//
+//                    //JSONObject jLocattion = jRestaurant.getJSONObject("location");
+//                    //JSONObject jRating = jRestaurant.getJSONObject("user_rating");
+//
+//                    //id = jRestaurant.getString("id");
+//                    name = jRestaurant.getString("name");
+//                    Log.w("name", name);
+//                    //address = jLocattion.getString("address");
+//                    //lat = jLocattion.getLong("latitude");
+//                    //lon = jLocattion.getLong("longitude");
+//                    currency = jRestaurant.getString("currency");
+//                    cost = jRestaurant.getInt("average_cost_for_two");
+//                    imageUrl = jRestaurant.getString("featured_image");
+//                    //rating = (float) jRating.getDouble("aggregate_rating");
+//                    Restaurant restaurant = new Restaurant();
+//                    restaurant.setName(name);
+//                    //restaurant.setAddress(address);
+//                    //restaurant.setLatitiude(lat);
+//                    //restaurant.setLongitude(lon);
+//                    restaurant.setCurrency(currency);
+//                    restaurant.setCost(String.valueOf(cost));
+//                    restaurant.setImageUrl(imageUrl);
+//                    //restaurant.setRating(String.valueOf(rating));
+//
+//                    mRestaurantCollection.add(restaurant);
                 }
             } catch (MalformedURLException e) {
                 e.printStackTrace();

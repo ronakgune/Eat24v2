@@ -1,6 +1,7 @@
 package com.main.eat24.adapters;
 
 import android.app.Activity;
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.main.eat24.R;
 import com.main.eat24.Model.Restaurant;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -20,9 +22,10 @@ import java.util.ArrayList;
 
 public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.RestaurantHolder> {
 
+    public String url;
     private ArrayList<Restaurant> mData;
     private Activity mACtivity;
-
+    private Context context;
     public RestaurantAdapter(ArrayList<Restaurant> data, Activity activity) {
         this.mData = data;
         this.mACtivity = activity;
@@ -43,9 +46,11 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
         holder.setCost("Average cost for 2 " +  " " + restaurant.getCurrency()+  " " + restaurant.getCost() +  " ");
         holder.setRating(restaurant.getRating());
 
-        Glide.with(mACtivity)
-                .load(restaurant.getRating())
-                .into(holder.restaurantImageView);
+//        Glide.with(mACtivity)
+//                .load(restaurant.getRating())
+//                .into(holder.restaurantImageView);
+
+        //Picasso.get().load(restaurant.getImageUrl()).into(holder.restaurantImageView);
     }
 
     @Override
@@ -68,12 +73,17 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
             super(itemView);
 
             restaurantImageView = (ImageView) itemView.findViewById(R.id.imageview_restaurant);
+
+
+
             restaurantNameTextView = (TextView) itemView.findViewById(R.id.textview_restaurant_name);
             restaurantAddressTextView = (TextView) itemView.findViewById(R.id.restaurant_address_textview);
             restaurantRatingTextView = (TextView) itemView.findViewById(R.id.rating);
             costTextView = (TextView) itemView.findViewById(R.id.cost_for_two_textview);
             distanceTextView = (TextView) itemView.findViewById(R.id.restaurant_distance_textview);
         }
+
+
 
         public void setName(String name) {
             restaurantNameTextView.setText(name);
@@ -95,4 +105,5 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
             distanceTextView.setText(distance);
         }
     }
+
 }
