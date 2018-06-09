@@ -5,5 +5,4 @@ package com.main.eat24.Model;
  */
 
 public class menuModel {
-    private String food;
 }
