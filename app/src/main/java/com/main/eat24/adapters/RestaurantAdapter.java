@@ -3,13 +3,17 @@ package com.main.eat24.adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.main.eat24.Common.Common;
 import com.main.eat24.R;
 import com.main.eat24.Model.Restaurant;
 import com.squareup.picasso.Picasso;
@@ -39,7 +43,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
 
     @Override
     public void onBindViewHolder(RestaurantHolder holder, int position) {
-        Restaurant restaurant = mData.get(position);
+        final Restaurant restaurant = mData.get(position);
 
         holder.setName(restaurant.getName());
         holder.setAddress(restaurant.getAddress());
@@ -51,6 +55,16 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
 //                .into(holder.restaurantImageView);
 
         //Picasso.get().load(restaurant.getImageUrl()).into(holder.restaurantImageView);
+
+        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(context, restaurant.getId(), Toast.LENGTH_SHORT).show();
+                Log.v("ID IS", restaurant.getId());
+                Common.currentID = restaurant.getId();
+
+            }
+        });
     }
 
     @Override
@@ -68,6 +82,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
         TextView restaurantRatingTextView;
         TextView costTextView;
         TextView distanceTextView;
+        public LinearLayout linearLayout;
 
         public RestaurantHolder(View itemView) {
             super(itemView);
@@ -81,6 +96,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
             restaurantRatingTextView = (TextView) itemView.findViewById(R.id.rating);
             costTextView = (TextView) itemView.findViewById(R.id.cost_for_two_textview);
             distanceTextView = (TextView) itemView.findViewById(R.id.restaurant_distance_textview);
+            linearLayout = itemView.findViewById(R.id.linearLayout);
         }
 
 
