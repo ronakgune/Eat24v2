@@ -31,11 +31,11 @@ public class FoodDetail extends AppCompatActivity {
     @BindView(R.id.food_price)
     TextView txtfood_price;
 
-    @BindView(R.id.food_description)
-    TextView txtfood_description;
-
-    @BindView(R.id.img_food)
-    ImageView food_image;
+//    @BindView(R.id.food_description)
+//    TextView txtfood_description;
+//
+//    @BindView(R.id.img_food)
+//    ImageView food_image;
 
     @BindView(R.id.btnCart)
     FloatingActionButton btnCart;
@@ -97,13 +97,13 @@ public class FoodDetail extends AppCompatActivity {
                 currentFood = dataSnapshot.getValue(Food.class);
 
                 //set Image
-                Picasso.get().load(currentFood.getImage()).into(food_image);
+                //Picasso.get().load(currentFood.getImage()).into(food_image);
 
-                collapsingToolbarLayout.setTitle(currentFood.getName());
+                //collapsingToolbarLayout.setTitle(currentFood.getName());
 
                 txtfood_price.setText(currentFood.getPrice());
 
-                txtfood_description.setText(currentFood.getDescription());
+                //txtfood_description.setText(currentFood.getDescription());
 
                 txtfood_name.setText(currentFood.getName());
             }

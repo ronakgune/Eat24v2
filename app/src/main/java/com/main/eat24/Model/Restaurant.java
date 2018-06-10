@@ -32,6 +32,7 @@ public class Restaurant {
         this.latitiude = latitiude;
     }
 
+    //ID
     public void setId(String id) {
         this.id = id;
     }
@@ -39,15 +40,15 @@ public class Restaurant {
     public String getId() {
         return id;
     }
-    public String getName() {
 
-        return name;
-    }
+    // Name
+    public String getName() {return name;}
 
     public void setName(String name) {
         this.name = name;
     }
 
+    // Address
     public String getAddress() {
         return address;
     }
@@ -56,6 +57,7 @@ public class Restaurant {
         this.address = address;
     }
 
+    //Rating
     public String getRating() {
         return rating;
     }
@@ -64,6 +66,7 @@ public class Restaurant {
         this.rating = rating;
     }
 
+    //Cost
     public String getCost() {
         return cost;
     }
@@ -72,12 +75,14 @@ public class Restaurant {
         this.cost = cost;
     }
 
+    // Image
     public String getImageUrl() {return imageUrl;}
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
 
+    //Get Currency
     public String getCurrency() {
         return currency;
     }
@@ -86,6 +91,7 @@ public class Restaurant {
         this.currency = currency;
     }
 
+    // Long
     public double getLongitude() {
         return longitude;
     }
@@ -94,6 +100,7 @@ public class Restaurant {
         this.longitude = longitude;
     }
 
+    // Lat
     public double getLatitiude() {
         return latitiude;
     }

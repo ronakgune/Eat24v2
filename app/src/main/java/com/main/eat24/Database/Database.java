@@ -44,10 +44,10 @@ public class Database extends SQLiteAssetHelper{
         while (!cursor.isAfterLast()) {
 
             result.add(new Order(cursor.getString(ProductId_index)
-            , cursor.getString(ProductName_index)
-            , cursor.getString(Quantity_index)
-            , cursor.getString(Price_index)
-            , cursor.getString(Discount_index)));
+                    , cursor.getString(ProductName_index)
+                    , cursor.getString(Quantity_index)
+                    , cursor.getString(Price_index)
+                    , cursor.getString(Discount_index)));
 
             cursor.moveToNext();
         }
@@ -57,11 +57,11 @@ public class Database extends SQLiteAssetHelper{
     public void addToCart(Order order) {
         SQLiteDatabase db = getReadableDatabase();
         String query = String.format("INSERT INTO OrderDetail(ProductId, ProductName,Quantity, Price, Discount) VALUES('%s', '%s', '%s', '%s', '%s');"
-        , order.getProductId()
-        , order.getProductName()
-        , order.getQuantity()
-        , order.getPrice()
-        , order.getDiscount());
+                , order.getProductId()
+                , order.getProductName()
+                , order.getQuantity()
+                , order.getPrice()
+                , order.getDiscount());
 
         db.execSQL(query);
     }

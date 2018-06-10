@@ -18,7 +18,7 @@ public class Order {
         Discount = discount;
     }
 
-    public Order() {
+    public Order(String string, String cursorString, String s) {
     }
 
     public String getProductId() {

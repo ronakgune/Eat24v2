@@ -9,7 +9,7 @@
     <string name="action_settings">Settings</string>
     <string name="zomato_api"><![CDATA[https://developers.zomato.com/api/v2.1/search?lat=-33.92127&lon=18.4180213&count=10]]></string>
 
-
+    <string name="signout">Sign Out</string>
     <string name="SignIn">Sign In</string>
     <string name="SignUp">Sign Up</string>
     <string name="PhoneNumber">Phone Number</string>
@@ -26,18 +26,6 @@
     <string name="next">Next</string>
     <string name="skip">Skip</string>
     <string name="start">Start</string>
-    <string name="title_slide1"> Slide 1</string>
-    <string name="desc_slide1">Description and pic</string>
-    <string name="title_slide2"> Slide 2 </string>
-    <string name="desc_slide2">Description and pic</string>
-    <string name="title_slide3">Slide 3</string>
-    <string name="desc_slide3">Description and pic</string>
-    <string name="title_slide4">Slide 4</string>
-    <string name="desc_slide4">Description and pic</string>
-    <string name="title_slide5">Slide 5</string>
-    <string name="desc_slide5">Description and pic</string>
-    <string name="title_slide6">Slide 6</string>
-    <string name="desc_slide6">Description and pic</string>
     <string name="description">Description</string>
     <string name="heading">Heading</string>
     <string name="title_activity_hometwo">hometwo</string>
@@ -50,4 +38,20 @@
     <string name="cart">Cart</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="pay">Proceed to Payment</string>
+    <string name="Open">Open</string>
+    <string name="Close">Close</string>
+
+
+    <string name="title_slide1"> Location Based </string>
+    <string name="desc_slide1">Don’t worry we won’t stalk you !!</string>
+    <string name="title_slide2"> Pick the Best </string>
+    <string name="desc_slide2">Find the best restaurant around you</string>
+    <string name="title_slide3">Choose your Meal</string>
+    <string name="desc_slide3">Easily find the food you are craving !!</string>
+    <string name="title_slide4">Group Order</string>
+    <string name="desc_slide4">Description and pic</string>
+    <string name="title_slide5">Secure Payment</string>
+    <string name="desc_slide5">Send funds with one tap via Paypal</string>
+    <string name="title_slide6">Now, Lets get Started!!</string>
+    <string name="desc_slide6">Coz we know you are hungry :P</string>
 </resources>

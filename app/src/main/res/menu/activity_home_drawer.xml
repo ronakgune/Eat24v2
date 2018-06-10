@@ -5,10 +5,10 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_menu"
-            android:icon="@drawable/ic_restaurant_black_24dp"
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_image2vector"
             android:iconTint="@android:color/white"
-            android:title="Menu" />
+            android:title="Profile" />
 
         <item
             android:id="@+id/nav_cart"
@@ -20,7 +20,13 @@
             android:id="@+id/nav_orders"
             android:icon="@drawable/ic_access_time_black_24dp"
             android:iconTint="@android:color/white"
-            android:title="Orders" />
+            android:title="Order History" />
+
+        <item
+            android:id="@+id/nav_groupid"
+            android:icon="@drawable/ic_groupid"
+            android:iconTint="@android:color/white"
+            android:title="Group Id" />
 
         <item
             android:id="@+id/nav_log_out"
