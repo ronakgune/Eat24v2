@@ -20,6 +20,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.main.eat24.Common.Common;
+
 
 public class IntroActivity extends Activity {
 
@@ -79,7 +81,6 @@ public class IntroActivity extends Activity {
                 R.layout.onboarding_slide1,
                 R.layout.onboarding_slide2,
                 R.layout.onboarding_slide3,
-                R.layout.onboarding_slide4,
                 R.layout.onboarding_slide5,
                 R.layout.onboarding_slide6};
 
@@ -91,6 +92,7 @@ public class IntroActivity extends Activity {
         viewPager.addOnPageChangeListener(viewPagerPageChangeListener);
 
          }
+
 
     public  void btnSkipClick(View v)
     {

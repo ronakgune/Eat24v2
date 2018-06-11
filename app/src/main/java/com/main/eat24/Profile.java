@@ -94,6 +94,8 @@ public class Profile extends AppCompatActivity {
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(Profile.this, "Check email to reset your password!", LENGTH_SHORT).show();
+                                    startActivity(new Intent(Profile.this, MainActivity.class));
+                                    finish();
                                 } else {
                                     Toast.makeText(Profile.this, "Fail to send reset password email!", LENGTH_SHORT).show();
                                 }

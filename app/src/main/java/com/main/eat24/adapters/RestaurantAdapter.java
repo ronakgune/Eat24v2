@@ -154,9 +154,6 @@ import com.main.eat24.Model.Restaurant;
 
 import java.util.ArrayList;
 
-/**
- * Created by brad on 2017/02/11.
- */
 
 public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.RestaurantHolder> {
 
@@ -180,7 +177,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
 
         holder.setName(restaurant.getName());
         holder.setAddress(restaurant.getAddress());
-        holder.setCost("Average cost for 2 " +  " " + restaurant.getCurrency()+  " " + restaurant.getCost() +  " ");
+        holder.setCost("Average cost for 2:" +  " " +restaurant.getCost() +  " " + restaurant.getCurrency() +  " ");
         holder.setRating(restaurant.getRating());
 
         Glide.with(mACtivity)
@@ -244,7 +241,6 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
             restaurantRatingTextView.setText(rating);
         }
 
-        //public void setRestaurantImageView { restaurantImageView.set}
 
         public void setCost(String cost) {
             costTextView.setText(cost);

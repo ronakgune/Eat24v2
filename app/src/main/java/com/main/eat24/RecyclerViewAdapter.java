@@ -2,6 +2,7 @@ package com.main.eat24;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.support.constraint.ConstraintLayout;
@@ -68,8 +69,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         holder.addto.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Toast.makeText(context,Common.currentId, Toast.LENGTH_SHORT).show();
+            public void onClick(final View v) {
+                //Toast.makeText(context,Common.currentId, Toast.LENGTH_SHORT).show();
                 if(Db.checkEmpty()){
                     Db.addToCart(new Order(
                             Common.currentId,
@@ -90,7 +91,34 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                                 null));
                     } else {
 
-                        
+//
+
+                        AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
+                        builder1.setMessage("You cannot order from two restaurants. Clear Cart?");
+                        builder1.setCancelable(true);
+
+                        builder1.setPositiveButton(
+                                "Yes",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id)
+                                    {
+                                        new Database(context).cleanToCart();
+                                        dialog.cancel();
+                                    }
+                                });
+
+                        builder1.setNegativeButton(
+                                "No",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        Intent intent = new Intent(context, home.class);
+                                        v.getContext().startActivity(intent);
+                                        dialog.cancel();
+                                    }
+                                });
+
+                        AlertDialog alert11 = builder1.create();
+                        alert11.show();
                         Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show();
                     }
                 }

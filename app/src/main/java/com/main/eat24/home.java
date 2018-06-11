@@ -483,9 +483,18 @@ public class home extends AppCompatActivity implements SwipeRefreshLayout.OnRefr
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefresh);
         mSwipeRefreshLayout.setOnRefreshListener(this);
-        Toast.makeText(this, "Current location is" + Common.longitude + Common.latitude + Common.count, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Current location is" + Common.longitude + Common.latitude + Common.count, Toast.LENGTH_SHORT).show();
     }
 
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+
+    }
 
     void getLocation() {
         try {
@@ -612,12 +621,12 @@ public class home extends AppCompatActivity implements SwipeRefreshLayout.OnRefr
 
                     jRestaurant = jRestaurant.getJSONObject("restaurant");
 
-                    //JSONObject jLocattion = jRestaurant.getJSONObject("location");
+                    JSONObject jLocattion = jRestaurant.getJSONObject("location");
                     JSONObject jRating = jRestaurant.getJSONObject("user_rating");
 
                     id = jRestaurant.getString("id");
                     name = jRestaurant.getString("name");
-                    //address = jLocattion.getString("address");
+                    address = jLocattion.getString("address");
                     //lat = jLocattion.getLong("latitude");
                     //lon = jLocattion.getLong("longitude");
                     currency = jRestaurant.getString("currency");
@@ -629,7 +638,7 @@ public class home extends AppCompatActivity implements SwipeRefreshLayout.OnRefr
                     Restaurant restaurant = new Restaurant();
                     restaurant.setName(name);
                     restaurant.setId(id);
-                    //restaurant.setAddress(address);
+                    restaurant.setAddress(address);
                     //restaurant.setLatitiude(lat);
                     //restaurant.setLongitude(lon);
                     restaurant.setCurrency(currency);

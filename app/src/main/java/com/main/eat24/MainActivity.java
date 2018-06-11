@@ -41,6 +41,15 @@ public class MainActivity extends AppCompatActivity {
         txtSlogan.setTypeface(typeface);
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+
+    }
+
     @OnClick(R.id.btnSignIn)
     public void onButtonSignInClick(View view) {
         Intent signIn = new Intent(MainActivity.this, SignIn.class);

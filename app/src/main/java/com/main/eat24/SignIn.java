@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -29,6 +31,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static android.widget.Toast.LENGTH_SHORT;
 import static com.main.eat24.Common.Common.currentUserPhone;
 
 public class SignIn extends AppCompatActivity {
@@ -37,6 +40,7 @@ public class SignIn extends AppCompatActivity {
 
     EditText edtPassword;
 
+    TextView forgotPass;
     FirebaseAuth mAuth;
 
 
@@ -57,6 +61,36 @@ public class SignIn extends AppCompatActivity {
 
         edtEmail=findViewById(R.id.edtEmail);
         edtPassword=findViewById(R.id.edtPassword);
+
+        forgotPass = findViewById(R.id.forgot);
+
+        forgotPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String email = edtEmail.getText().toString().trim();
+
+                if (email.matches("")) {
+                    Toast.makeText(SignIn.this, "You did not enter an Email", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else {
+                    mAuth.sendPasswordResetEmail(email)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(SignIn.this, "Check email to reset your password!", LENGTH_SHORT).show();
+                                        startActivity(new Intent(SignIn.this, MainActivity.class));
+                                        finish();
+                                    } else {
+                                        Toast.makeText(SignIn.this, "Fail to send reset password email!", LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                }
+            }
+        });
 
         //init firebase
         mAuth=FirebaseAuth.getInstance();
