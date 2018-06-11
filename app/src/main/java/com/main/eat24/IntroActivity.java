@@ -43,28 +43,7 @@ public class IntroActivity extends Activity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_intro);
 
-//        uptodown = AnimationUtils.loadAnimation(this,R.anim.uptodown);
-//        downtoup = AnimationUtils.loadAnimation(this, R.anim.downtoup);
-//        l1.setAnimation(uptodown);
-//        ld1.setAnimation(downtoup);
-//        l2.setAnimation(uptodown);
-//        ld2.setAnimation(downtoup);
-//        l3.setAnimation(uptodown);
-//        ld3.setAnimation(downtoup);
-//        l4.setAnimation(uptodown);
-//        ld4.setAnimation(downtoup);
-//        l5.setAnimation(uptodown);
-//        ld5.setAnimation(downtoup);
-//        l6.setAnimation(uptodown);
-//        ld6.setAnimation(downtoup);
 
-       // myLayout = (RelativeLayout) findViewById(R.id.rel_intro);
-       // animationDrawable = (AnimationDrawable) myLayout.getBackground();
-        // animationDrawable.setEnterFadeDuration(1500);
-        // animationDrawable.setExitFadeDuration(1500);
-        // animationDrawable.start();
-
-        // Onboarding screen to disappear after first launch------
         SharedPreferences share = getSharedPreferences("PREFS",MODE_PRIVATE);
         if(share.getInt("INTRO",0)==1)
         {

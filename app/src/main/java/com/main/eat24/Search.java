@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 /**
- * Created by ronakgune on 6/10/18.
+ * Created by Ronak on 6/10/18.
  */
 
 public class Search extends AppCompatActivity {

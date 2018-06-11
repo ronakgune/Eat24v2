@@ -47,6 +47,7 @@ public class Cart extends AppCompatActivity {
 
     RecyclerView recyclerView;
     TextView txtTotalView;
+    TextView currentRest;
     FButton btnPlaceOrder;
     RecyclerView.LayoutManager layoutManager;
     FirebaseAuth mAuth;
@@ -77,10 +78,26 @@ public class Cart extends AppCompatActivity {
         txtTotalView=findViewById(R.id.txtTotalPrice);
         recyclerView=findViewById(R.id.listCart);
         btnPlaceOrder=findViewById(R.id.btnPlaceOrder);
+        currentRest = findViewById(R.id.textView4);
 
+
+        currentRest.setText(Common.currRestaurant);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+
+        currentRest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                new Database(getBaseContext()).cleanToCart();
+
+
+                Intent intent = new Intent(Cart.this, home.class);
+                startActivity(intent);
+            }
+        });
 
         btnPlaceOrder.setOnClickListener(new View.OnClickListener() {
             @Override

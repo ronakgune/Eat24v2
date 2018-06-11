@@ -1,7 +1,7 @@
 package com.main.eat24;
 
 /**
- * Created by ronakgune on 6/9/18.
+ * Created by Ronak on 6/9/18.
  */
 
 import android.content.Intent;

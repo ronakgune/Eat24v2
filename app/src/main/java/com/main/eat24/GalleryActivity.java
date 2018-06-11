@@ -10,9 +10,11 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 /**
- * Created by User on 1/2/2018.
+ * Created by Ronak on 1/2/2018.
  */
 
+
+//NOT USED
 public class GalleryActivity extends AppCompatActivity {
 
     private static final String TAG = "GalleryActivity";

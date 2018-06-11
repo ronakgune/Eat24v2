@@ -76,6 +76,10 @@ public class Paypal extends AppCompatActivity {
             public void onClick(View v) {
                 Common.currAddress = address.getText().toString();
 
+
+                if(Common.currAddress.equals("")){
+                    Toast.makeText(Paypal.this, "Please Enter an Address", Toast.LENGTH_SHORT).show();
+                }else{
                 mAuth= FirebaseAuth.getInstance();
                 currentUser=mAuth.getCurrentUser();
                 requests.child(currentUser.getUid()).child("OrderPrice").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -95,37 +99,12 @@ public class Paypal extends AppCompatActivity {
                     public void onCancelled(@NonNull DatabaseError databaseError) {
 
                     }
-                });
+                });}
             }
         });
 
     }
 
-//    public void pay(View view) {
-//
-//        Common.currAddress = address.getText().toString();
-//
-//        mAuth= FirebaseAuth.getInstance();
-//        currentUser=mAuth.getCurrentUser();
-//        requests.child(currentUser.getUid()).child("OrderPrice").addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                PayPalPayment payment = new PayPalPayment(BigDecimal.valueOf(Double.parseDouble(dataSnapshot.getValue().toString())),"USD","Test Payment with Paypal", PayPalPayment.PAYMENT_INTENT_SALE);
-//
-//                Common.totalCost = dataSnapshot.getValue().toString();
-//
-//                Intent intent = new Intent(getApplicationContext(), PaymentActivity.class);
-//                intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION,m_configuration);
-//                intent.putExtra(PaymentActivity.EXTRA_PAYMENT,payment);
-//                startActivityForResult(intent,m_paypalRequestCode);
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
-//    }
 
     protected void onActivityResult(int requestCode,int resultCode,Intent data) {
 

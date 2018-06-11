@@ -10,7 +10,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.google.firebase.auth.FirebaseAuth;
-//import com.main.eat24.ViewHolder.R;
+
 
 public class Splash extends AppCompatActivity {
 

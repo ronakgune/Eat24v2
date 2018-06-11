@@ -15,14 +15,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
-import com.main.eat24.Common.Common;
-import com.main.eat24.Model.Order;
+
 import com.main.eat24.Model.OrderHistory;
-import com.main.eat24.Model.Request;
-import com.main.eat24.R;
-import com.main.eat24.ViewHolder.OrderViewHolder;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -38,7 +33,6 @@ public class OrderStatus extends AppCompatActivity {
 
     RecyclerView.LayoutManager layoutManager;
 
-  //  FirebaseRecyclerAdapter<OrderHistory, OrderViewHolder> adapter;
 
     FirebaseDatabase database;
     DatabaseReference requests;
@@ -104,12 +98,10 @@ public class OrderStatus extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        //adapter.startListening();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        //adapter.stopListening();
     }
 }

@@ -25,7 +25,7 @@ import com.main.eat24.Model.Order;
 import java.util.ArrayList;
 
 /**
- * Created by User on 1/1/2018.
+ * Created by Ronak on 1/1/2018.
  */
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>{

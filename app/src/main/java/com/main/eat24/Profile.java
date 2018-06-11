@@ -53,8 +53,6 @@ public class Profile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        // getSupportActionBar().setDisplayShowHomeEnabled(true);
-//      Firebase.setAndroidContext(this);
         mAuth=FirebaseAuth.getInstance();
         mdatabase = FirebaseDatabase.getInstance();
         mUserDb=mdatabase.getReference("User");
@@ -111,30 +109,11 @@ public class Profile extends AppCompatActivity {
 
 
                 FirebaseAuth.getInstance().signOut();
-//                Intent loginscreen = new Intent(Profile.this,MainActivity.class);
-//                loginscreen.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                startActivity(loginscreen);
                 startActivity(new Intent(Profile.this, MainActivity.class));
                 finish();
             }
         });
 
 
-
-//        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-//        mdatabase.getReference(uid).addListenerForSingleValueEvent(new ValueEventListener() {
-//
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                String demail = dataSnapshot.child("email").getValue(String.class);
-//                String dname = dataSnapshot.child("name").getValue(String.class);
-//                String dphoneNumber = dataSnapshot.child("phoneNumber").getValue(String.class);
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//                throw databaseError.toException();
-//            }
-//        });
 
     }}
