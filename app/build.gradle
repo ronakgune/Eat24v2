@@ -51,6 +51,7 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.firebaseui:firebase-ui-auth:4.0.0'
     compile 'com.google.gms:google-services:4.0.1'
+    implementation 'com.firebase:firebase-client-android:2.3.1'
 }
 
 apply plugin: 'com.google.gms.google-services'

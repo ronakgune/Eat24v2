@@ -417,6 +417,10 @@ public class home extends AppCompatActivity implements SwipeRefreshLayout.OnRefr
                     Intent cart = new Intent(home.this, Cart.class);
                     startActivity(cart);
                     return true;
+                case R.id.Profile:
+                    Intent profile = new Intent(home.this,Profile.class);
+                    startActivity(profile);
+                    return true;
             }
             return false;
         }
@@ -592,6 +596,7 @@ public class home extends AppCompatActivity implements SwipeRefreshLayout.OnRefr
 
                     Restaurant restaurant = new Restaurant();
                     restaurant.setName(name);
+                    restaurant.setId(id);
                     //restaurant.setAddress(address);
                     //restaurant.setLatitiude(lat);
                     //restaurant.setLongitude(lon);

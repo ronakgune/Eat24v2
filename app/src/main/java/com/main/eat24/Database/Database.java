@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 
+import com.main.eat24.Common.Common;
 import com.main.eat24.Model.Order;
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
@@ -71,5 +72,36 @@ public class Database extends SQLiteAssetHelper{
         String query = String.format("DELETE FROM OrderDetail");
 
         db.execSQL(query);
+    }
+
+    public boolean checkData(){
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = null;
+        String sql ="SELECT ProductId FROM OrderDetail where ProductId="+Common.currentId;
+        cursor=db.rawQuery(sql,null);
+
+        if(cursor.getCount()>0){
+            cursor.close();
+            return true;
+        }else{
+            cursor.close();
+            return false;
+        }
+
+    }
+
+    public boolean checkEmpty(){
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = null;
+        String sql ="SELECT * FROM OrderDetail";
+        cursor=db.rawQuery(sql,null);
+
+        if(cursor.getCount()>0){
+            cursor.close();
+            return false;
+        }else{
+            cursor.close();
+            return true;
+        }
     }
 }

@@ -68,7 +68,8 @@ public class Cart extends AppCompatActivity {
         ButterKnife.bind(this);
 
         mAuth=FirebaseAuth.getInstance();
-        currentUser=mAuth.getCurrentUser();
+        currentUser = mAuth.getCurrentUser();
+
         //Firebase
         database = FirebaseDatabase.getInstance();
         requests = database.getReference("Requests");
@@ -90,11 +91,14 @@ public class Cart extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         dataSnapshot.getRef().child("OrderPrice").setValue(String.valueOf(total));
                         dataSnapshot.getRef().child("User").setValue(currentUser.getDisplayName());
+                        new Database(getBaseContext()).cleanToCart();
+                        Common.count = 0;
+                        Common.activeCart = "";
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                        Toast.makeText(Cart.this, "Error Placing Order", Toast.LENGTH_SHORT);
                     }
                 });
                 finish();

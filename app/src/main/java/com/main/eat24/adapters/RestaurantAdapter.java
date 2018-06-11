@@ -144,8 +144,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.main.eat24.Common.Common;
 import com.main.eat24.Menu_Activity;
 import com.main.eat24.R;
 import com.main.eat24.Model.Restaurant;
@@ -174,7 +176,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
 
     @Override
     public void onBindViewHolder(RestaurantHolder holder, int position) {
-        Restaurant restaurant = mData.get(position);
+        final Restaurant restaurant = mData.get(position);
 
         holder.setName(restaurant.getName());
         holder.setAddress(restaurant.getAddress());
@@ -182,7 +184,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
         holder.setRating(restaurant.getRating());
 
         Glide.with(mACtivity)
-                .load(restaurant.getRating())
+                .load(restaurant.getImageUrl())
                 .into(holder.restaurantImageView);
 
         holder.linearlayout.setOnClickListener(new View.OnClickListener() {
@@ -190,7 +192,9 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
 
             @Override
             public void onClick(View v) {
+                Common.currentId = restaurant.getId();
                 Intent intent=new Intent(v.getContext(),Menu_Activity.class);
+                //intent.putExtra("currRestaurant", restaurant.getName());
                 v.getContext().startActivity(intent);
 
             }
@@ -238,6 +242,8 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
         public void setRating(String rating) {
             restaurantRatingTextView.setText(rating);
         }
+
+        //public void setRestaurantImageView { restaurantImageView.set}
 
         public void setCost(String cost) {
             costTextView.setText(cost);

@@ -1,7 +1,9 @@
 package com.main.eat24;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -15,6 +17,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
+import com.main.eat24.Common.Common;
 import com.main.eat24.Database.Database;
 import com.main.eat24.Model.Order;
 
@@ -27,6 +30,7 @@ import java.util.ArrayList;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>{
 
     Context context;
+    private Database Db;
     private static final String TAG = "RecyclerViewAdapter";
 
     private ArrayList<String> mImageNames = new ArrayList<>();
@@ -59,19 +63,39 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.foodname.setText(mImageNames.get(position));
         holder.costp.setText(mImages.get(position));
 
+        Db = new Database(context);
+
 
         holder.addto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new Database(context).addToCart(new Order(
-                        "12",
-                        holder.foodname.getText().toString(),
-                        holder.numberButton.getNumber().toString(),
-                        holder.costp.getText().toString(),
-                        null));
+                Toast.makeText(context,Common.currentId, Toast.LENGTH_SHORT).show();
+                if(Db.checkEmpty()){
+                    Db.addToCart(new Order(
+                            Common.currentId,
+                            holder.foodname.getText().toString(),
+                            holder.numberButton.getNumber().toString(),
+                            holder.costp.getText().toString(),
+                            null));
+                    Common.activeCart = Common.currentId;
+                }
+                else {
+                    if (Db.checkData()) {
+
+                        Db.addToCart(new Order(
+                                Common.activeCart,
+                                holder.foodname.getText().toString(),
+                                holder.numberButton.getNumber().toString(),
+                                holder.costp.getText().toString(),
+                                null));
+                    } else {
+                        Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show();
+                    }
+                }
 
             }
         });
+
 
 
 

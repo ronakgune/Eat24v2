@@ -24,6 +24,8 @@
         </activity>
         <activity android:name=".IntroActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Profile"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".SignIn"
             android:theme="@style/AppTheme.NoActionBar"/>
         <!--<activity android:name=".home" />-->
@@ -34,8 +36,8 @@
          <activity
          android:name="com.main.eat24.home"
          android:label="@string/title_activity_home" />
-        <activity android:name=".FoodList" />
-        <activity android:name=".FoodDetail" />
+        <!--<activity android:name=".FoodList" />-->
+        <!--<activity android:name=".FoodDetail" />-->
         <activity android:name=".Cart"
             android:label="Cart" />
         <activity android:name=".Paypal"/>
@@ -50,7 +52,7 @@
         <activity android:name="com.paypal.android.sdk.payments.PaymentMethodActivity" />
         <activity android:name="com.paypal.android.sdk.payments.PaymentConfirmActivity" />
 
-        <activity android:name=".OrderStatus" />
+        <!--<activity android:name=".OrderStatus" />-->
     </application>
 
 </manifest>
