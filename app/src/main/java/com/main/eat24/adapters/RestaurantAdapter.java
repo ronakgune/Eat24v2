@@ -193,8 +193,9 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
             @Override
             public void onClick(View v) {
                 Common.currentId = restaurant.getId();
+                Common.currRestaurant = restaurant.getName();
                 Intent intent=new Intent(v.getContext(),Menu_Activity.class);
-                //intent.putExtra("currRestaurant", restaurant.getName());
+
                 v.getContext().startActivity(intent);
 
             }

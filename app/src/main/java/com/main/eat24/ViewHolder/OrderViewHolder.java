@@ -17,14 +17,14 @@ public class OrderViewHolder extends RecyclerView.ViewHolder implements OnClickL
     @BindView(R.id.order_id)
     public TextView txtOrderId;
 
-    @BindView(R.id.order_phone)
-    public TextView txtOrderPhone;
+    @BindView(R.id.order_restname)
+    public TextView txtOrderRest;
+
+    @BindView(R.id.order_price)
+    public TextView txtOrderPrice;
 
     @BindView(R.id.order_address)
     public TextView txtOrderAddress;
-
-    @BindView(R.id.order_status)
-    public TextView txtOrderStatus;
 
     private ItemClickListener itemClickListener;
 

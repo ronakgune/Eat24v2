@@ -12,4 +12,14 @@ public class Common {
     public static int count;
     public static String currentId;
     public static String activeCart;
+    public static int orderCount;
+
+
+    public static String currUser;
+    public static String currEmail;
+    public static String currPhone;
+    public static String totalCost;
+    public static String currAddress;
+    public static String currRestaurant;
+
 }

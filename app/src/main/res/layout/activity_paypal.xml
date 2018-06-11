@@ -1,20 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.main.eat24.Paypal">
+    tools:context="com.main.eat24.Paypal"
+    tools:layout_editor_absoluteY="81dp">
 
-    <Button
-        android:layout_width="match_parent"
+
+    <info.hoang8f.widget.FButton
+        android:id="@+id/payment"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:onClick="pay"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="8dp"
+        android:layout_marginBottom="56dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:text="Proceed to Payment"
-        android:textSize="20sp" />
+        android:textColor="@android:color/white"
+        app:buttonColor="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/finaladdress"
+        app:layout_constraintVertical_bias="0.955"
+        app:shadowColor="@android:color/black" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
-</LinearLayout>
+    <EditText
+        android:id="@+id/finaladdress"
+        android:layout_width="302dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="298dp"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="51dp"
+        android:hint="Enter delivery address"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnSignInActivity"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

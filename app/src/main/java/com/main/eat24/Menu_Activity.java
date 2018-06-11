@@ -4,11 +4,14 @@ package com.main.eat24;
  * Created by ronakgune on 6/9/18.
  */
 
+import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 
 import com.main.eat24.Model.Order;
@@ -25,12 +28,22 @@ public class Menu_Activity extends AppCompatActivity {
     private ArrayList<String> mNames = new ArrayList<>();
     private ArrayList<String> mImageUrls = new ArrayList<>();
 
+    FloatingActionButton cart;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_main);
         Log.d(TAG, "onCreate: started.");
 
+        cart = findViewById(R.id.cartShortcut);
+
+        cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent cart = new Intent(Menu_Activity.this, Cart.class);
+                startActivity(cart);
+            }
+        });
         initImageBitmaps();
     }
 

@@ -365,6 +365,12 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.main.eat24.Common.Common;
 import com.main.eat24.adapters.RestaurantAdapter;
 import com.main.eat24.Model.Restaurant;
@@ -408,6 +414,8 @@ public class home extends AppCompatActivity implements SwipeRefreshLayout.OnRefr
                     return true;
                 case R.id.orders:
                     Toast.makeText(home.this, "Orders", Toast.LENGTH_SHORT).show();
+                    Intent order = new Intent(home.this, OrderStatus.class);
+                    startActivity(order);
                     return true;
                 case R.id.location_home:
                     Intent location = new Intent(home.this, location.class);
@@ -432,6 +440,12 @@ public class home extends AppCompatActivity implements SwipeRefreshLayout.OnRefr
     private RecyclerView mRestaurantRecyclerView;
     private RestaurantAdapter mAdapter;
     private ArrayList<Restaurant> mRestaurantCollection;
+    FirebaseAuth mAuth;
+    //   FirebaseUser currentUser;
+    FirebaseDatabase mdatabase;
+    private DatabaseReference mUserDb;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -441,6 +455,24 @@ public class home extends AppCompatActivity implements SwipeRefreshLayout.OnRefr
 //        }else{
 //            Common.count = 1;
 //        }
+
+        mAuth=FirebaseAuth.getInstance();
+        mdatabase = FirebaseDatabase.getInstance();
+        mUserDb=mdatabase.getReference("User");
+
+        mUserDb.child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Common.currUser =  dataSnapshot.child("name").getValue(String.class);
+                Common.currEmail =  dataSnapshot.child("email").getValue(String.class);
+                Common.currPhone = dataSnapshot.child("phoneNumber").getValue(String.class);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         getLocation();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_main);

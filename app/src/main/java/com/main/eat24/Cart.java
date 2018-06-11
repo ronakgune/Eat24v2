@@ -90,10 +90,6 @@ public class Cart extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         dataSnapshot.getRef().child("OrderPrice").setValue(String.valueOf(total));
-                        dataSnapshot.getRef().child("User").setValue(currentUser.getDisplayName());
-                        new Database(getBaseContext()).cleanToCart();
-                        Common.count = 0;
-                        Common.activeCart = "";
                     }
 
                     @Override
@@ -101,7 +97,7 @@ public class Cart extends AppCompatActivity {
                         Toast.makeText(Cart.this, "Error Placing Order", Toast.LENGTH_SHORT);
                     }
                 });
-                finish();
+//                finish();
 
                 Intent inent = new Intent(com.main.eat24.Cart.this,Paypal.class);
                 // calling an activity using <intent-filter> action name

@@ -34,7 +34,18 @@
                 />
 
             <TextView
-                android:id="@+id/order_status"
+                android:id="@+id/order_restname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:gravity="center_vertical|start"
+                android:textAllCaps="true"
+                android:text="123456789"
+                android:textStyle="italic"
+                />
+
+            <TextView
+                android:id="@+id/order_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -44,16 +55,6 @@
                 android:textStyle="italic"
                 />
 
-            <TextView
-                android:id="@+id/order_phone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:gravity="center_vertical|start"
-                android:textAllCaps="true"
-                android:text="123456789"
-                android:textStyle="italic"
-                />
 
             <TextView
                 android:id="@+id/order_address"
@@ -67,13 +68,6 @@
                 />
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/cart_item_count"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_gravity="center_vertical|end"
-            android:layout_marginRight="16dp"
-            />
 
     </LinearLayout>
 

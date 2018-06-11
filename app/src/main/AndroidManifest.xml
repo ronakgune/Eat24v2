@@ -40,7 +40,8 @@
         <!--<activity android:name=".FoodDetail" />-->
         <activity android:name=".Cart"
             android:label="Cart" />
-        <activity android:name=".Paypal"/>
+        <activity android:name=".Paypal"
+            android:label="Payment"/>
         <activity android:name=".Menu_Activity"
             android:label="Menu"/>
         <activity android:name=".GalleryActivity"/>
@@ -52,7 +53,8 @@
         <activity android:name="com.paypal.android.sdk.payments.PaymentMethodActivity" />
         <activity android:name="com.paypal.android.sdk.payments.PaymentConfirmActivity" />
 
-        <!--<activity android:name=".OrderStatus" />-->
+        <activity android:name=".OrderStatus"
+            android:label="Order History"/>
     </application>
 
 </manifest>

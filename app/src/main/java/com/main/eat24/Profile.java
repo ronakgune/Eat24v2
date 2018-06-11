@@ -1,5 +1,6 @@
 package com.main.eat24;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -24,6 +25,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.main.eat24.Common.Common;
 import com.main.eat24.Model.User;
 
 import org.w3c.dom.Text;
@@ -42,6 +44,7 @@ public class Profile extends AppCompatActivity {
     TextView useremail;
     TextView userphone;
     Button changePass;
+    Button signout;
     //private Firebase mref;
     private DatabaseReference mUserDb;
 
@@ -59,6 +62,7 @@ public class Profile extends AppCompatActivity {
         useremail= findViewById(R.id.uemail);
         userphone= findViewById(R.id.uphone);
         changePass = findViewById(R.id.view4);
+        signout = findViewById(R.id.signout);
 
         //mref = new Firebase("https://eat24-749c3.firebaseio.com/");
 
@@ -83,6 +87,7 @@ public class Profile extends AppCompatActivity {
                 String email = useremail.getText().toString().trim();
 
 
+
                 mAuth.sendPasswordResetEmail(email)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
@@ -94,6 +99,21 @@ public class Profile extends AppCompatActivity {
                                 }
                             }
                         });
+            }
+        });
+
+
+        signout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                FirebaseAuth.getInstance().signOut();
+//                Intent loginscreen = new Intent(Profile.this,MainActivity.class);
+//                loginscreen.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                startActivity(loginscreen);
+                startActivity(new Intent(Profile.this, MainActivity.class));
+                finish();
             }
         });
 

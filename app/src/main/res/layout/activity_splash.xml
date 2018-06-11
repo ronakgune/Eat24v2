@@ -45,7 +45,8 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:textColor="@color/black"
-        android:text="@string/TextView"/>
+        android:text="@string/TextView"
+        android:textStyle="bold"/>
 
     <!--<TextView-->
     <!--android:id="@+id/textView"-->
